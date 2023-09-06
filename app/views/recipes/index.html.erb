@@ -1,1 +1,12 @@
-<h1>All Recipes</h1>
+<h1>Public Recipes</h1>
+
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= link_to recipe.name, recipe %>
+      (Simple dish by: <%= recipe.user.name %>,
+      Total food items: <%= recipe.foods.count %>,
+      Total price: <%= number_to_currency(recipe.foods.sum(:price)) %>)
+    </li>
+  <% end %>
+</ul>
