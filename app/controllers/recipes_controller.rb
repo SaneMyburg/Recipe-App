@@ -2,10 +2,8 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-     @recipes = if user_signed_in?
-       current_user.recipes.includes(:user)
-     end
-     @recipes = @recipes.order(created_at: :desc)
+    @recipes = (current_user.recipes.includes(:user) if user_signed_in?)
+    @recipes = @recipes.order(created_at: :desc)
   end
 
   def show
