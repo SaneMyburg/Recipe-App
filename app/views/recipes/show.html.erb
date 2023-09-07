@@ -4,6 +4,11 @@
   <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
   <p><strong>Description:</strong> <%= @recipe.description %></p>
   
-  <button class="btn btn-success">Public</button>
+  <% if current_user == @recipe.user %>
+    <% if @recipe.public %>
+      <%= button_to "Private", make_private_recipe_path(@recipe), method: :put, class: "btn btn-danger" %>
+    <% else %>
+      <%= button_to "Public", make_public_recipe_path(@recipe), method: :put, class: "btn btn-success" %>
+    <% end %>
+  <% end %>
 </div>
-

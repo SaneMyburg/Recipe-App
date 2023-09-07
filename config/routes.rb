@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticate :user do
-    resources :recipes, only: [:index,:show, :new, :create, :destroy]
+    resources :recipes, only: [:index, :show, :new, :create, :destroy] do
+      member do
+        put :make_public
+        put :make_private
+      end
+    end
   end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
-  get 'public_recipes', to: 'recipes#index', as: 'public_recipes'
+  get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
   root 'recipes#index'
 end

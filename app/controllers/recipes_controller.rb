@@ -2,7 +2,6 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = Recipe.public_recipes
     @recipes = (current_user.recipes.includes(:user) if user_signed_in?)
     @recipes = @recipes.order(created_at: :desc)
   end
@@ -31,6 +30,18 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe deleted successfully.'
+  end
+
+  def make_public
+    @recipe = current_user.recipes.find(params[:id])
+    @recipe.update(public: true)
+    redirect_to @recipe, notice: 'Recipe is now public.'
+  end
+
+  def make_private
+    @recipe = current_user.recipes.find(params[:id])
+    @recipe.update(public: false)
+    redirect_to @recipe, notice: 'Recipe is now private.'
   end
 
   private
