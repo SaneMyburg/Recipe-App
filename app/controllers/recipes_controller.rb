@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @recipes = Recipe.public_recipes
     @recipes = (current_user.recipes.includes(:user) if user_signed_in?)
     @recipes = @recipes.order(created_at: :desc)
   end
