@@ -1,0 +1,26 @@
+<div>
+  <h1>New Recipe</h1>
+
+  <%= form_with(model: @recipe, url: recipes_path, local: true) do |form| %>
+    <div>
+      <%= form.text_field :name, placeholder: "Recipe name" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.text_field :cooking_time, placeholder: "Cooking time" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.text_field :preparation_time, placeholder: "Preparation time" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, class: "block font-bold mb-2" %>
+      <%= form.text_field :description, placeholder: "Recipe description" %>
+    </div>
+
+    <div>
+      <%= form.submit "Create Recipe"%>
+    </div>
+  <% end %>
+</div>
