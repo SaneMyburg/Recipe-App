@@ -14,11 +14,11 @@
  *= require_self
  */
 
- .recipe-name {
+.recipe-name {
   width: 30%;
- }
+}
 
- .custom-description-width {
+.custom-description-width {
   width: 70%;
   margin-left: 4%;
   margin-top: 1%;

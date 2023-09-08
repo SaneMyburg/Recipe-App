@@ -1,6 +1,6 @@
-<h1>My Food List</h1>
+<h2 class="text-center">My Food List</h2>
 
-<table>
+<table class="table table-bordered table-striped m-4 foods-table">
   <thead>
     <tr>
       <th>Food</th>
@@ -23,4 +23,4 @@
   </tbody>
 </table>
 
-<%= link_to 'Add New Food', new_food_path %>
+<%= link_to 'Add New Food', new_food_path, class: 'btn btn-outline-info mr-4 float-end' %>

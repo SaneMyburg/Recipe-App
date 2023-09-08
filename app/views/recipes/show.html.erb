@@ -16,7 +16,7 @@
   </div>
 
     <section class="d-flex justify-content-between m-4 pt-3">
-      <%= link_to 'Generate Shopping List', '#', class: "btn btn-outline-info" %>
+      <%= link_to 'Generate Shopping List', shopping_list_recipe_path, class: "btn btn-outline-info" %>
       <% if @recipe.user == current_user %>
         <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe), class: "btn btn-outline-info" %>
       <% end %>
