@@ -1,9 +1,57 @@
 <div class="recipe-show">
-  <h1><%= @recipe.name %></h1>
-  <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
-  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
-  <p><strong>Description:</strong> <%= @recipe.description %></p>
-  
-  <button class="btn btn-success">Public</button>
-</div>
+  <h2 class="text-center"><%= @recipe.name %></h2>
 
+  <% if current_user == @recipe.user %>
+    <div class="float-right m-4">
+      <% if @recipe.public %>
+        <%= button_to "Private", make_private_recipe_path(@recipe), method: :put, class: "btn btn-danger" %>
+      <% else %>
+        <%= button_to "Public", make_public_recipe_path(@recipe), method: :put, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  <div class="m-4">
+    <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+    <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
+    <p><%= @recipe.description %></p>
+  </div>
+
+    <section class="d-flex justify-content-between m-4 pt-3">
+      <%= link_to 'Generate Shopping List', shopping_list_recipe_path, class: "btn btn-outline-info" %>
+      <% if @recipe.user == current_user %>
+        <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe), class: "btn btn-outline-info" %>
+      <% end %>
+    </section>
+     <br>
+  <% end %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped m-4 foods-table">
+        <thead>
+          <tr>
+            <th class="bg-gray-100 font-weight-bold">Food</th>
+            <th class="bg-gray-100 font-weight-bold">Quantity</th>
+            <th class="bg-gray-100 font-weight-bold">Value</th>
+            <th class="bg-gray-100 font-weight-bold">Actions</th>
+         </tr>
+        </thead>
+        <tbody>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <% food = recipe_food.food %>
+        <tr>
+          <td class="py-2 px-4"><%= food.name %></td>
+          <td class="py-2 px-4"><%= recipe_food.quantity %> <%= food.measurement_unit %></td>
+          <td class="py-2 px-4">$<%= food.price * recipe_food.quantity %></td>
+          <td class="py-2 px-4">
+            <% if @recipe.user == current_user %>
+              <%= link_to 'Modify', '#', class: 'text-blue-500 underline mr-2' %>
+            <% end %> 
+            <% if @recipe.user == current_user %>
+              <%= button_to 'Remove', recipe_recipe_food_path(@recipe, recipe_food), method: :delete, data: { confirm: 'Are you sure you want to delete this food?' }, class: 'text-red-500 underline' %>
+            <% end %>  
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+      </table>
+    </div>
+
+</div>

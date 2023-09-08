@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+.recipe-name {
+  width: 30%;
+}
+
+.custom-description-width {
+  width: 70%;
+  margin-left: 4%;
+  margin-top: 1%;
+}
+
+.food-list-ul {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.food-item {
+  width: 60%;
+}
+
+.foods-table {
+  max-width: 95%;
+}

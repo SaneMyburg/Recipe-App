@@ -11,9 +11,9 @@ class FoodsController < ApplicationController
 
   def create
     @food = current_user.foods.build(food_params)
-    
+
     existing_food = current_user.foods.find_by(name: @food.name)
-    
+
     if existing_food
       flash.now[:alert] = 'A food with this name already exists.'
       render :new
@@ -23,11 +23,17 @@ class FoodsController < ApplicationController
       flash.now[:alert] = 'Food creation failed. Please check the form for errors.'
       render :new
     end
-  end  
-  
+  end
+
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    redirect_to foods_path, notice: 'Food was successfully deleted.'
+  end
+
   private
-  
+
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :unit_price)
+    params.require(:food).permit(:name, :measurement_unit, :price)
   end
 end
