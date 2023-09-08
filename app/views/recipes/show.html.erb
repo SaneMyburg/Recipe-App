@@ -1,14 +1,39 @@
 <div class="recipe-show">
-  <h1><%= @recipe.name %></h1>
-  <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
-  <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
-  <p><strong>Description:</strong> <%= @recipe.description %></p>
-  
+  <h2 class="text-center"><%= @recipe.name %></h2>
+
   <% if current_user == @recipe.user %>
-    <% if @recipe.public %>
-      <%= button_to "Private", make_private_recipe_path(@recipe), method: :put, class: "btn btn-danger" %>
-    <% else %>
-      <%= button_to "Public", make_public_recipe_path(@recipe), method: :put, class: "btn btn-success" %>
-    <% end %>
+    <div class="float-right m-4">
+      <% if @recipe.public %>
+        <%= button_to "Private", make_private_recipe_path(@recipe), method: :put, class: "btn btn-danger" %>
+      <% else %>
+        <%= button_to "Public", make_public_recipe_path(@recipe), method: :put, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  <div class="m-4">
+    <p><strong>Preparation Time:</strong> <%= @recipe.preparation_time %> minutes</p>
+    <p><strong>Cooking Time:</strong> <%= @recipe.cooking_time %> minutes</p>
+    <p><%= @recipe.description %></p>
+  </div>
+
+    <section class="d-flex justify-content-between m-4 pt-3">
+      <%= link_to 'Generate Shopping List', '#', class: "btn btn-outline-info" %>
+      <% if @recipe.user == current_user %>
+        <%= link_to 'Add Ingredient', '#', class: "btn btn-outline-info" %>
+      <% end %>
+    </section>
+     <br>
   <% end %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped m-4 foods-table">
+        <thead>
+          <tr>
+            <th class="bg-gray-100 font-weight-bold">Food</th>
+            <th class="bg-gray-100 font-weight-bold">Quantity</th>
+            <th class="bg-gray-100 font-weight-bold">Value</th>
+            <th class="bg-gray-100 font-weight-bold">Actions</th>
+         </tr>
+        </thead>
+      </table>
+    </div>
+
 </div>

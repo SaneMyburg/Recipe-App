@@ -1,26 +1,25 @@
-<div>
-  <h1>New Recipe</h1>
+<div class="container">
+  <h2 class="text-center">New Recipe</h2>
 
-  <%= form_with(model: @recipe, url: recipes_path, local: true) do |form| %>
-    <div>
-      <%= form.text_field :name, placeholder: "Recipe name" %>
+  <%= form_with(model: @recipe, url: recipes_path, local: true, class: "w-80 mx-auto") do |form| %>
+    <div class="mb-4">
+      <%= form.text_field :name, class: "form-control", placeholder: "Recipe name" %>
     </div>
 
     <div class="mb-4">
-      <%= form.text_field :cooking_time, placeholder: "Cooking time" %>
+      <%= form.text_field :cooking_time, class: "form-control", placeholder: "Cooking time" %>
     </div>
 
     <div class="mb-4">
-      <%= form.text_field :preparation_time, placeholder: "Preparation time" %>
+      <%= form.text_field :preparation_time, class: "form-control", placeholder: "Preparation time" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :description, class: "block font-bold mb-2" %>
-      <%= form.text_field :description, placeholder: "Recipe description" %>
+      <%= form.text_field :description, class: "form-control", placeholder: "Recipe description" %>
     </div>
 
-    <div>
-      <%= form.submit "Create Recipe"%>
+    <div class="text-center">
+      <%= form.submit "Create Recipe", class: "btn btn-primary float-end" %>
     </div>
   <% end %>
 </div>
