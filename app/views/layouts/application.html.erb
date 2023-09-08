@@ -11,13 +11,23 @@
   </head>
 
   <body>
-  <div>
-       <% if flash[:notice] || flash[:alert] %>
-    <div class="alert alert-primary">
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
+    <nav>
+      <!-- Add your navigation elements here, e.g., a logo, other links, etc. -->
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <!-- Add the "My Food List" link below -->
+        <li><%= link_to 'My Food List', foods_path %></li>
+      </ul>
+    </nav>
+
+    <div>
+      <% if flash[:notice] || flash[:alert] %>
+        <div class="alert alert-primary">
+          <%= flash[:notice] %>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <%= yield %>
     </div>
-     <% end %>
-    <%= yield %>
   </body>
 </html>
