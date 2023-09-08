@@ -7,8 +7,8 @@
         <p>By: <%= recipe.user.name %></p>
       </div>
       <div class="food-item">
-        <p>Total food items: <% 4 %></p>
-        <p>Total price: <% 4 %></p>
+        <p>Total food items: <%= recipe.foods.count %></p>
+        <p>Total price: <%= number_to_currency(recipe.foods.sum(:price))%></p>
       </div>
     </li>
   <% end %>
