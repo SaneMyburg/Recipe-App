@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       member do
         put :make_public
         put :make_private
+        get 'shopping_list'
       end
       resources :foods, only: [:new, :create]
       resources :recipe_foods, only: [:new, :create, :destroy]
