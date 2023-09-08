@@ -18,10 +18,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :unit_price %>
-    <%= form.number_field :unit_price %>
-    <% if @food.errors.has_key?(:unit_price) %>
-      <p class="text-danger"><%= @food.errors[:unit_price].join(', ') %></p>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+    <% if @food.errors.has_key?(:price) %>
+      <p class="text-danger"><%= @food.errors[:price].join(', ') %></p>
     <% end %>
   </div>
 

@@ -14,11 +14,10 @@
 
   <body>
     <nav>
-      <!-- Add your navigation elements here, e.g., a logo, other links, etc. -->
       <ul>
         <li><%= link_to 'Home', root_path %></li>
-        <!-- Add the "My Food List" link below -->
         <li><%= link_to 'My Food List', foods_path %></li>
+        <li><%= link_to 'Recipes', recipes_path %></li>
       </ul>
     </nav>
 
@@ -31,8 +30,6 @@
       <% end %>
       <%= yield %>
     </div>
-     <% end %>
-    <%= yield %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
