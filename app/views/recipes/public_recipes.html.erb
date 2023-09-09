@@ -1,0 +1,15 @@
+<h2 class="mb-4 font-bold text-center">Public Recipes</h2>
+<ul class="list-group food-list-ul">
+  <% @recipes.each do |recipe| %>
+    <li class="d-flex justify-content-between m-4 list-group-item">
+      <div>
+        <%= link_to recipe.name, recipe %>
+        <p>By: <%= recipe.user.name %></p>
+      </div>
+      <div class="food-item">
+        <p>Total food items: <%= recipe.foods.count %></p>
+        <p>Total price: <%= number_to_currency(recipe.foods.sum(:price))%></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

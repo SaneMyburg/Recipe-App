@@ -1,0 +1,30 @@
+<div class="container">
+<h2 class="text-center">New Food</h2>
+
+<%= form_with model: @food, url: foods_path, method: :post, class: "w-80 mx-auto" do |form| %>
+  <div class="mb-4">
+    <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %>
+    <% if @food.errors.has_key?(:name) %>
+      <p class="text-danger"><%= @food.errors[:name].join(', ') %></p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.text_field :measurement_unit, placeholder: 'Measurement unit',class: 'form-control'%>
+    <% if @food.errors.has_key?(:measurement_unit) %>
+      <p class="text-danger"><%= @food.errors[:measurement_unit].join(', ') %></p>
+    <% end %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.number_field :price, placeholder: 'Price', class: 'form-control' %>
+    <% if @food.errors.has_key?(:price) %>
+      <p class="text-danger"><%= @food.errors[:price].join(', ') %></p>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Food", class: "btn btn-primary float-end"%>
+  </div>
+<% end %>
+</div>
