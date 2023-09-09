@@ -15,5 +15,4 @@ Rails.application.routes.draw do
     end
     get 'public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
   end
-  root 'recipes#index'
 end

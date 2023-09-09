@@ -2,7 +2,8 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @recipes = (current_user.recipes.includes(:user) if user_signed_in?)
+    Rails.logger.debug("user_signed_in?: #{user_signed_in?}")
+    @recipes = current_user.recipes.includes(:user) if user_signed_in?
     @recipes = @recipes.order(created_at: :desc)
   end
 
@@ -22,6 +23,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipes_path, notice: 'Recipe created successfully.'
     else
+      flash[:alert] = 'Recipe creation failed. Please check the form for errors.'
       render :new
     end
   end
@@ -36,16 +38,19 @@ class RecipesController < ApplicationController
     @recipes = Recipe.public_recipes.includes(:user)
   end
 
-  def make_public
+  def make_public_or_private(make_public)
     @recipe = current_user.recipes.find(params[:id])
-    @recipe.update(public: true)
-    redirect_to @recipe, notice: 'Recipe is now public.'
+    @recipe.update(public: make_public)
+    message = make_public ? 'Recipe is now public.' : 'Recipe is now private.'
+    redirect_to @recipe, notice: message
+  end
+
+  def make_public
+    make_public_or_private(true)
   end
 
   def make_private
-    @recipe = current_user.recipes.find(params[:id])
-    @recipe.update(public: false)
-    redirect_to @recipe, notice: 'Recipe is now private.'
+    make_public_or_private(false)
   end
 
   def shopping_list
@@ -58,7 +63,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :public, :description)
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description)
   end
 
   def find_missing_foods
