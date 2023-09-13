@@ -276,9 +276,6 @@ GEM
       nokogiri (~> 1.8)
     zeitwerk (2.6.11)
 
-PLATFORMS
-  x64-mingw-ucrt
-  x86_64-darwin-19
 
 DEPENDENCIES
   bootsnap
