@@ -1,18 +1,18 @@
 databases:
-  - name: Postgres
-    databaseName: postgres_plrp
-    user: postgres_plrp_user
+  - name: imfundo
+    databaseName: imfundo
+    user: imfundo_user
 
 services:
   - type: web
-    name: delirecipes
+    name: thedelirecipes
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: postgres_plrp
+          name: imfundo
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
